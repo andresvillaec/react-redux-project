@@ -8,14 +8,14 @@ export function loadUsers () {
   }
 }
 
-export function loginUsers (id) {
+export function loginUser (id) {
   return {
     type: LOGIN_USER,
     id
   }
 }
 
-export function logoutUsers (id) {
+export function logoutUser (id) {
   return {
     type: LOGOUT_USER,
     id
