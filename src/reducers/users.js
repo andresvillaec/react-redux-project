@@ -1,4 +1,4 @@
-import { LOAD_USERS, LOGIN_USER, LOGOUT_USER } from '../actions/users'
+import { LOAD_USERS } from '../actions/users'
 
 export default function users(state = {}, action) {
   switch (action.type) {
@@ -7,24 +7,6 @@ export default function users(state = {}, action) {
         ...state,
         ...action.users
       }
-    default:
-      return state
-  }
-}
-
-export default function loginUser(state = null, action) {
-  switch (action.type) {
-    case LOGIN_USER:
-      return action.id
-    default:
-      return state
-  }
-}
-
-export default function logoutUser(state = null, action) {
-  switch (action.type) {
-    case LOGOUT_USER:
-      return action.id
     default:
       return state
   }
