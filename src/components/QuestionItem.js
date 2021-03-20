@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
 
 class QuestionItem extends Component {
-
   render() {
     const {question} = this.props
     if(question === null){
@@ -10,7 +8,6 @@ class QuestionItem extends Component {
     }
 
     const {optionOne} = question
-
 
     return (
       <div>
@@ -21,12 +18,4 @@ class QuestionItem extends Component {
   }
 }
 
-function mapStateToProps ({questions}, { id }) {
-  const question = questions[id]
-
-  return {
-    question: question
-  }
-}
-
-export default connect(mapStateToProps)(QuestionItem)
+export default QuestionItem

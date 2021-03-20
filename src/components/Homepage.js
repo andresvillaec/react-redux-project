@@ -9,27 +9,36 @@ class Homepage extends Component {
     this.props.dispatch(handleInitialData())
   }
   render() {
-    const { answeredQuestions, unAnsweredQuestions } = this.props
+    const { questions, authedUser } = this.props
+
+    const questionsArray = Object.values(questions)
+    const answeredQuestions = questionsArray.filter(function(question) {
+      return question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
+    });
+
+    const unansweredQuestions = questionsArray.filter(function(question) {
+      return !question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser)
+    });
 
     return (
       <div>
         <div className='container'>
-          <LoadingBar/> 
+          <LoadingBar/>
           <h3>Unanswered Questions</h3>
-          <QuestionList questions = {unAnsweredQuestions} />
+          <QuestionList customQuestions = {answeredQuestions} />
           <h3>Answered Questions</h3>
-          <QuestionList questions = {answeredQuestions} />
+          <QuestionList customQuestions = {unansweredQuestions} />
         </div>
       </div>
     )
   }
 }
 
-function mapStateToProps ({questions}){
+function mapStateToProps ({questions, authedUser}){
   return {
     loading: questions === null,
-    answeredQuestions: questions,
-    unAnsweredQuestions: questions,
+    authedUser,
+    questions,
   }
 }
 
