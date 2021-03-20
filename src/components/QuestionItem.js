@@ -1,21 +1,33 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+function mapStateToProps ({ authedUser, users }, {question}) {
+  return {
+    user: authedUser ? users[authedUser] : {},
+    question
+  }
+}
 
 class QuestionItem extends Component {
   render() {
-    const {question} = this.props
-    if(question === null){
-      return <p>This question does not exists</p>
-    }
-
+    const {question, user} = this.props
     const {optionOne} = question
 
     return (
       <div>
-        {optionOne.text}
-        <button>View Poll</button>
+        <p>{user.name}</p>
+        <div>
+          <div>Image</div>
+          <div>
+            <h3>Would you rather</h3>
+            <p>{optionOne.text}</p>
+            <button>View Poll</button>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default QuestionItem
+
+export default connect(mapStateToProps)(QuestionItem)
