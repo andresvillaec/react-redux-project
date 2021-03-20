@@ -12,12 +12,18 @@ class QuestionItem extends Component {
   render() {
     const {question, user} = this.props
     const {optionOne} = question
+    const {name, avatarURL} = user
 
     return (
       <div>
-        <p>{user.name}</p>
+        <p>{name}</p>
         <div>
-          <div>Image</div>
+          <div>
+            <img
+              src={avatarURL}
+              alt={`Avatar of ${name}`}
+              className='avatar'/>
+              </div>
           <div>
             <h3>Would you rather</h3>
             <p>{optionOne.text}</p>
