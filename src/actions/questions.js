@@ -5,10 +5,7 @@ export const SAVE_ANSWER = 'SAVE_ANSWER'
 export const GET_ANSWERED_QUESTIONS = 'GET_ANSWERED_QUESTIONS'
 export const GET_UNANSWERED_QUESTIONS = 'GET_UNANSWERED_QUESTIONS'
 
-export function loadQuestions (questions) {  
-  console.log('Call Question actions')
-  console.log('question actions' + questions)
-
+export function loadQuestions (questions) {
   return {
     type: LOAD_QUESTIONS,
     questions

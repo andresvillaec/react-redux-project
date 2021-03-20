@@ -5,8 +5,6 @@ import QuestionItem from '../components/QuestionItem'
 class QuestionList extends Component {
   render() {
     const {questionIds} = this.props
-    console.log('Call Question component')
-    console.log(questionIds)
 
     return (
       <div>

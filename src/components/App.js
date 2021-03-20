@@ -11,19 +11,13 @@ class App extends Component {
   render() {
     const { questions } = this.props
 
-    console.log('Render App.js')
-    console.log(questions)
-
-    if (questions && questions.length > 0){
-      questions.map((question) => (
-        console.log('Map' + question)
-      ))
-    }
-
     return (
       <div>
         <div className='container'>
           <LoadingBar/> 
+          <h3>Unanswered Questions</h3>
+          <QuestionList questions = {questions} />
+          <h3>Answered Questions</h3>
           <QuestionList questions = {questions} />
         </div>
       </div>
@@ -32,11 +26,9 @@ class App extends Component {
 }
 
 function mapStateToProps ({questions}){
-  console.log('Map State to props App.js')
-  console.log(questions)
   return {
     loading: questions === null,
-    questions: questions === {} ? [] : questions
+    questions: questions,
   }
 }
 

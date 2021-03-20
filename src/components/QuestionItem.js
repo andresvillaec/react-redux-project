@@ -5,8 +5,6 @@ class QuestionItem extends Component {
 
   render() {
     const {question} = this.props
-    console.log('Render question item')
-    console.log(this.props)
     if(question === null){
       return <p>This question does not exists</p>
     }
@@ -28,8 +26,6 @@ function mapStateToProps ({questions}, { id }) {
 
   return {
     question: question
-      ? question
-      : null
   }
 }
 
