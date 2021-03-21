@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {handleAddQuestion} from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
   state = {
     optionOne: '',
     optionTwo: '',
+    toHome: false,
   }
 
   handleChangeOptionOne = (e) => {
     const optionOne = e.target.value
   
     this.setState(() => ({
-      optionOne
+      optionOne,
     }))
   }
   
@@ -20,7 +22,7 @@ class NewQuestion extends Component {
     const optionTwo = e.target.value
   
     this.setState(() => ({
-      optionTwo
+      optionTwo  
     }))
   }
 
@@ -28,18 +30,22 @@ class NewQuestion extends Component {
     e.preventDefault()
 
     const { optionOne, optionTwo } = this.state
-    const { dispatch } = this.props
+    const { dispatch, id } = this.props
 
     dispatch(handleAddQuestion(optionOne, optionTwo))
 
     this.setState(() => ({
-      text: ''
+      optionOne: '',
+      optionTwo: '',
+      toHome: id ? false : true,
     }))
   }
 
   render() {
-    const { optionOne, optionTwo } = this.state
-
+    const { optionOne, optionTwo, toHome } = this.state
+    if (toHome === true) {
+      return <Redirect to='/' />
+    }
     return (
       <div>
         <div>
