@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import QuestionList from './QuestionList'
-import LoadingBar from 'react-redux-loading'
 
 class Homepage extends Component {
   componentDidMount() {
@@ -23,7 +22,6 @@ class Homepage extends Component {
     return (
       <div>
         <div className='container'>
-          <LoadingBar/>
           <h3>Unanswered Questions</h3>
           <QuestionList customQuestions = {answeredQuestions} />
           <h3>Answered Questions</h3>
@@ -36,7 +34,6 @@ class Homepage extends Component {
 
 function mapStateToProps ({questions, authedUser}){
   return {
-    loading: questions === null,
     authedUser,
     questions,
   }
