@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Homepage from './Homepage'
 import NewQuestion from './NewQuestion'
+import QuestionAnswer from './QuestionAnswer'
 import LoadingBar from 'react-redux-loading'
+import PageNotFound from './PageNotFound'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends Component {
@@ -16,12 +18,10 @@ class App extends Component {
         <LoadingBar/> 
         <Router>
           <Switch>
-            <Route exact path="/">
-              <Homepage/>
-            </Route>
-            <Route path="/question/new">
-              <NewQuestion/>
-            </Route>
+            <Route exact path="/" component={Homepage}/>
+            <Route path="/question/new" component={NewQuestion}/>
+            <Route path="/:id" component={QuestionAnswer}/>
+            <Route path="*" component={PageNotFound}/>
           </Switch>
         </Router>
       </div>
