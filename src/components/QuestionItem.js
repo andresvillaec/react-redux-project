@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { BrowserRouter as Route, Link } from "react-router-dom";
 
 function mapStateToProps ({ authedUser, users }, {question}) {
   return {
@@ -13,6 +14,7 @@ class QuestionItem extends Component {
     const {question, user} = this.props
     const {optionOne} = question
     const {name, avatarURL} = user
+    const to = '/' + question.id
 
     return (
       <div>
@@ -27,7 +29,7 @@ class QuestionItem extends Component {
           <div>
             <h3>Would you rather</h3>
             <p>{optionOne.text}</p>
-            <button>View Poll</button>
+            <Link to={to}>View Poll</Link>
           </div>
         </div>
       </div>
