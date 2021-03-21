@@ -1,12 +1,10 @@
 import {showLoading, hideLoading} from 'react-redux-loading'
-import {saveQuestion} from '../utils/api'
+import {saveQuestion, saveQuestionAnswer} from '../utils/api'
 
 export const LOAD_QUESTIONS = 'LOAD_QUESTIONS'
 export const CREATE_QUESTION = 'CREATE_QUESTION'
 export const GET_QUESTION = 'GET_QUESTION'
 export const SAVE_ANSWER = 'SAVE_ANSWER'
-export const GET_ANSWERED_QUESTIONS = 'GET_ANSWERED_QUESTIONS'
-export const GET_UNANSWERED_QUESTIONS = 'GET_UNANSWERED_QUESTIONS'
 
 function createQuestion (question) {
   return {
@@ -29,22 +27,10 @@ export function getQuestion (id) {
   }
 }
 
-export function saveAnswer (question) {
+export function saveAnswer (response) {
   return {
     type: SAVE_ANSWER,
-    question
-  }
-}
-
-export function getAnsweredQuestions () {
-  return {
-    type: GET_ANSWERED_QUESTIONS,
-  }
-}
-
-export function getUnansweredQuestions () {
-  return {
-    type: GET_UNANSWERED_QUESTIONS,
+    response
   }
 }
 
@@ -59,6 +45,21 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
       author: authedUser,
     })
       .then((newQuestion) => dispatch(createQuestion(newQuestion)))
+      .then(() => dispatch(hideLoading()))
+  }
+}
+
+export function handleSaveAnswer (qid, answer) {
+  return (dispatch, getState) => {
+    const { authedUser } = getState()
+    dispatch(showLoading())
+
+    return saveQuestionAnswer({ 
+      authedUser, 
+      qid, 
+      answer 
+    })
+      .then((newQuestion) => dispatch(saveAnswer(newQuestion)))
       .then(() => dispatch(hideLoading()))
   }
 }
