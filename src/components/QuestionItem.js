@@ -14,7 +14,7 @@ class QuestionItem extends Component {
     const {question, user} = this.props
     const {optionOne} = question
     const {name, avatarURL} = user
-    const to = '/' + question.id
+    const to = '/question/' + question.id
 
     return (
       <div>

@@ -12,12 +12,12 @@ export default function Nav () {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/question/new' activeClassName='active'>
+          <NavLink to='/new' activeClassName='active'>
             New Question
           </NavLink>
         </li>
         <li>
-          <NavLink to='/question/leader-board' activeClassName='active'>
+          <NavLink to='/leader-board' activeClassName='active'>
             Leader Board
           </NavLink>
         </li>
