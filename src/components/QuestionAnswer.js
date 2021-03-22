@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {handleSaveAnswer} from '../actions/questions'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
-} from "react-router-dom";
+import { Redirect, withRouter } from 'react-router-dom'
 
 function mapStateToProps({questions, users, authedUser}, props) {
   const { id } = props.match.params
@@ -20,7 +13,8 @@ function mapStateToProps({questions, users, authedUser}, props) {
 
 class QuestionAnswer extends Component {
   state = {
-    optionSelected: ''
+    optionSelected: '',
+    isAnswered: false,
   }
 
   handleChange = (e) => {
@@ -41,58 +35,67 @@ class QuestionAnswer extends Component {
     const answer = optionSelected
     const qid = question.id
     dispatch(handleSaveAnswer(qid, answer))
+
+    this.setState(() => ({
+      isAnswered: true,  
+    }))
   }
 
   render() {
     const {question, user} = this.props
+    const {isAnswered} = this.state
     const {optionOne, optionTwo} = question
     const {name, avatarURL} = user
 
+    if (isAnswered === true) {
+      return <Redirect to='/answer' />
+    }
+
     return (
       <div>
-      <p>{name} asks:</p>
-      <div>
+        <p>{name} asks:</p>
         <div>
-          <img
-            src={avatarURL}
-            alt={`Avatar of ${name}`}
-            className='avatar'/>
-            </div>
-        <div>
-          <h3>Would you rather</h3> 
-          <form onSubmit={this.handleSubmit}>
-            <div className="radio">
+          <div>
+            <img
+              src={avatarURL}
+              alt={`Avatar of ${name}`}
+              className='avatar'/>
+              </div>
+          <div>
+            <h3>Would you rather</h3> 
+            <form onSubmit={this.handleSubmit}>
+              <div className="radio">
+                <label>
+                  <input
+                    type="radio"
+                    value="optionOne"
+                    checked={this.state.optionSelected === "optionOne"}
+                    onChange={this.handleChange}
+                  />
+                  {`${optionOne.text}`}
+                </label>
+              </div>
+              <div className="radio">
               <label>
-                <input
-                  type="radio"
-                  value="optionOne"
-                  checked={this.state.optionSelected === "optionOne"}
-                  onChange={this.handleChange}
-                />
-                optionOne
-              </label>
-            </div>
-            <div className="radio">
-            <label>
-                <input
-                  type="radio"
-                  value="optionTwo"
-                  checked={this.state.optionSelected === "optionTwo"}
-                  onChange={this.handleChange}
-                />
-                optionTwo
-              </label>
-            </div>
-            <button
-            className='btn'
-            type='submit'
-            disabled={this.state.optionSelected === ''}>
-              Submit
-          </button>
-          </form>
+                  <input
+                    type="radio"
+                    value="optionTwo"
+                    checked={this.state.optionSelected === "optionTwo"}
+                    onChange={this.handleChange}
+                  />
+                  {`${optionTwo.text}`}
+                </label>
+              </div>
+              <button
+              className='btn'
+              type='submit'
+              disabled={this.state.optionSelected === ''}>
+                Submit
+            </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
     );
   }
 }
