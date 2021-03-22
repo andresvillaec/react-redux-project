@@ -6,6 +6,8 @@ import NewQuestion from './NewQuestion'
 import QuestionAnswer from './QuestionAnswer'
 import LoadingBar from 'react-redux-loading'
 import PageNotFound from './PageNotFound'
+import LeaderBoard from './LeaderBoard'
+import Nav from './Nav'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends Component {
@@ -17,10 +19,12 @@ class App extends Component {
       <div className='container'>
         <LoadingBar/> 
         <Router>
+        <Nav/>
           <Switch>
             <Route exact path="/" component={Homepage}/>
-            <Route path="/question/new" component={NewQuestion}/>
-            <Route path="/:id" component={QuestionAnswer}/>
+            <Route exact path="/question/new" component={NewQuestion}/>
+            <Route exact path="/question/leader-board" component={LeaderBoard}/>
+            <Route exact path="/question/:id" component={QuestionAnswer}/>
             <Route path="*" component={PageNotFound}/>
           </Switch>
         </Router>
