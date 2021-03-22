@@ -8,9 +8,8 @@ export function loginUser (id) {
   }
 }
 
-export function logoutUser (id) {
+export function logoutUser () {
   return {
-    type: LOGOUT_USER,
-    id
+    type: LOGOUT_USER
   }
 }
