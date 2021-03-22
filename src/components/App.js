@@ -27,8 +27,8 @@ class App extends Component {
             <Route exact path="/new" component={NewQuestion}/>
             <Route exact path="/leader-board" component={LeaderBoard}/>
             <Route exact path="/question/:id" component={QuestionAnswer}/>
+            <Route exact path="/answer/:id" component={QuestionResponse}/>
             <Route exact path="/login" component={Login}/>
-            <Route exact path="/answer" component={QuestionResponse}/>
             <Route path="*" component={PageNotFound}/>
           </Switch>
         </Router>

@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Route, Link } from "react-router-dom";
 
-function mapStateToProps ({ authedUser, users }, {question}) {
+function mapStateToProps ({ users }, {question}) {
   return {
-    user: authedUser ? users[authedUser] : {},
+    author: users ? users[question.author] : {},
     question
   }
 }
 
 class QuestionItem extends Component {
   render() {
-    const {question, user} = this.props
+    const {question, author} = this.props
     const {optionOne} = question
-    const {name, avatarURL} = user
+    const {name, avatarURL} = author
     const to = '/question/' + question.id
 
     return (

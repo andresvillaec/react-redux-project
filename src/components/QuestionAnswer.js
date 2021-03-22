@@ -5,9 +5,11 @@ import { Redirect, withRouter } from 'react-router-dom'
 
 function mapStateToProps({questions, users, authedUser}, props) {
   const { id } = props.match.params
+  const question = questions[id]
   return {
-    question: questions[id],
-    user: users[authedUser]
+    question: question,
+    user: users[authedUser],
+    author: users[question.author]
   };
 }
 
@@ -42,13 +44,14 @@ class QuestionAnswer extends Component {
   }
 
   render() {
-    const {question, user} = this.props
+    const {question, user, author} = this.props
     const {isAnswered} = this.state
     const {optionOne, optionTwo} = question
-    const {name, avatarURL} = user
+    const {name, avatarURL} = author
+    const to = '/answer/' + question.id
 
     if (isAnswered === true) {
-      return <Redirect to='/answer' />
+      return <Redirect to={to} />
     }
 
     return (

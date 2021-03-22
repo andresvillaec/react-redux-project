@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom'
 import {loginUser} from '../actions/authedUser'
 
-function mapStateToProps({users}) {
+function mapStateToProps({users, authedUser}) {
   const userArray = Object.values(users)
   return {
-    users: userArray
+    users: userArray,
+    authedUser
   };
 }
 
@@ -37,9 +38,9 @@ class Login extends Component {
 
   render() {
     const { selectedUserId, toHome } = this.state
-    const {users} = this.props
+    const {users} = this.props 
 
-    if (toHome === true) {
+    if (toHome) {
       return <Redirect to='/' />
     }
 

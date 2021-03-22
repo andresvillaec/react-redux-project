@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import QuestionList from './QuestionList'
+import { Redirect, withRouter } from 'react-router-dom'
 
 class Homepage extends Component {
   componentDidMount() {
@@ -9,6 +10,10 @@ class Homepage extends Component {
   }
   render() {
     const { questions, authedUser } = this.props
+    const isLoggedIn = authedUser === null ? false : true
+    if (isLoggedIn === false) {
+      return <Redirect to={'/login'} />
+    }
 
     const questionsArray = Object.values(questions)
     const answeredQuestions = questionsArray.filter(function(question) {
