@@ -6,6 +6,26 @@
   height: 40vmin;
   pointer-events: none;
 }
+.container{
+  max-width: 720px;
+  margin: 0 auto;
+}
+.container-small{
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 15px;
+  margin: 1px solid;
+}
+.avatar{
+  width: 130px;
+  height: auto;
+  padding: 20px;
+}
+.box{
+  border: 2px solid black;
+  padding: 15px;
+  margin-top: 15px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
