@@ -22,9 +22,13 @@ class QuestionResponse extends Component {
     const {optionOne, optionTwo} = question
     const {name, avatarURL} = author
 
+    const optionOneCounter = optionOne.votes.length
+    const optionTwoCounter = optionTwo.votes.length
+    const counter = optionOneCounter + optionTwoCounter;
+
     return (
       <div>
-        <p>Asked by{name}</p>
+        <h3>Asked by{name}</h3>
         <div>
           <div>
             <img
@@ -33,12 +37,14 @@ class QuestionResponse extends Component {
               className='avatar'/>
               </div>
           <div>
-            <h3>Results</h3>
-            <div>
+            <h5>Results</h5>
+            <div className="box">
               <p>{optionOne.text}</p>
+              <p>{optionOneCounter} out of {counter} votes</p>
             </div>
-            <div>
+            <div className="box">
               <p>{optionTwo.text}</p>
+              <p>{optionTwoCounter} out of {counter} votes</p>
             </div>
           </div>
         </div>

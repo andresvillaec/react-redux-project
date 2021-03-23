@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {handleSaveAnswer} from '../actions/questions'
 import { Redirect } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 function mapStateToProps({questions, users, authedUser}, props) {
   const { id } = props.match.params
@@ -72,7 +73,7 @@ class QuestionAnswer extends Component {
               src={avatarURL}
               alt={`Avatar of ${name}`}
               className='avatar'/>
-              </div>
+          </div>
           <div>
             <h3>Would you rather</h3> 
             <form onSubmit={this.handleSubmit}>
@@ -98,12 +99,12 @@ class QuestionAnswer extends Component {
                   {`${optionTwo.text}`}
                 </label>
               </div>
-              <button
-              className='btn'
-              type='submit'
-              disabled={this.state.optionSelected === ''}>
-                Submit
-            </button>
+              <Button
+                className='btn'
+                type='submit'
+                disabled={this.state.optionSelected === ''}>
+                Save
+              </Button>
             </form>
           </div>
         </div>

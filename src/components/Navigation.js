@@ -24,19 +24,19 @@ class Navigation extends Component {
 
     return (
       <div>
-        <Nav fill variant="tabs" defaultActiveKey="/home">
+        <Nav className="justify-content-center" fill variant="tabs" defaultActiveKey="/">
           <Nav.Item>
-            <NavLink eventKey="home" to='/' exact activeClassName='active'>
+            <NavLink to='/' exact activeClassName='active'>
               Home
             </NavLink>
           </Nav.Item>
           <Nav.Item>
-            <NavLink eventKey="new" to='/add'>
+            <NavLink to='/add'>
               New Question
             </NavLink>
           </Nav.Item>
           <Nav.Item>
-            <NavLink eventKey="leaderboard" to='/leaderboard'>
+            <NavLink to='/leaderboard'>
               Leaderboard
             </NavLink>
           </Nav.Item>
@@ -45,7 +45,6 @@ class Navigation extends Component {
             <li>
               <span>Hello, {user.name} </span>
               <NavLink
-              eventKey="home"
               onClick={this.handleClick} 
               to='/'
               >
@@ -53,7 +52,7 @@ class Navigation extends Component {
               </NavLink>
             </li> :
             <li>
-              <NavLink eventKey="login" to='/login'>
+              <NavLink to='/login'>
                 Login
               </NavLink>
             </li>
