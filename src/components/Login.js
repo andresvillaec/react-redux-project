@@ -55,7 +55,7 @@ class Login extends Component {
           <div>
             <div>
               <img
-                src='https://gravatar.com/avatar/5f86fed648ac1a785fb5b2409712c070?s=200&d=robohash&r=x'
+                src='http://www.danielledeveloper.com/wp-content/uploads/2018/04/Reactjs-logo-e1523253944211.png'
                 alt="Login react project"
                 className='avatar'/>
             </div>
