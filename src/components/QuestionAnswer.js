@@ -25,7 +25,6 @@ class QuestionAnswer extends Component {
     this.setState(() => ({
       optionSelected
     }))
-    console.log(optionSelected)
   }
 
   handleSubmit = (e) => {

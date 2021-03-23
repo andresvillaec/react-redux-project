@@ -9,7 +9,7 @@ import PageNotFound from './PageNotFound'
 import LeaderBoard from './LeaderBoard'
 import QuestionResponse from './QuestionResponse'
 import Login from './Login'
-import Nav from './Nav'
+import Navigation from './Navigation'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -23,16 +23,18 @@ class App extends Component {
       <div className='container'>
         <LoadingBar/> 
         <Router>
-        <Nav/>
-        <Switch>
-          <Route exact path="/" component={Homepage}/>
-          <Route exact path="/add" component={NewQuestion}/>
-          <Route exact path="/leaderboard" component={LeaderBoard}/>
-          <Route exact path="/questions/:id" component={QuestionAnswer}/>
-          <Route exact path="/answer/:id" component={QuestionResponse}/>
-          <Route exact path="/login" component={Login}/>
-          <Route path="*" component={PageNotFound}/>
-        </Switch>
+          <Navigation/>
+          <div className="container-small">
+            <Switch>
+              <Route exact path="/" component={Homepage}/>
+              <Route exact path="/add" component={NewQuestion}/>
+              <Route exact path="/leaderboard" component={LeaderBoard}/>
+              <Route exact path="/questions/:id" component={QuestionAnswer}/>
+              <Route exact path="/answer/:id" component={QuestionResponse}/>
+              <Route exact path="/login" component={Login}/>
+              <Route path="*" component={PageNotFound}/>
+            </Switch>
+          </div>
         </Router>
       </div>
     )

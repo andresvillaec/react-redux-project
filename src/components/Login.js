@@ -53,10 +53,12 @@ class Login extends Component {
             <p>Please sign in to continue</p>
           </div>
           <div>
-            <img
-              src='https://gravatar.com/avatar/5f86fed648ac1a785fb5b2409712c070?s=200&d=robohash&r=x'
-              alt="Login react project"
-              className='avatar'/>
+            <div>
+              <img
+                src='https://gravatar.com/avatar/5f86fed648ac1a785fb5b2409712c070?s=200&d=robohash&r=x'
+                alt="Login react project"
+                className='avatar'/>
+            </div>
             <select id="users" value={selectedUserId} onChange={this.handleChange}>
               <option disabled value="0">Select user</option>
               {users.map(function(user) {

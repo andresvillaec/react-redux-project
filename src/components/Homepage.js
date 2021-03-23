@@ -31,11 +31,9 @@ class Homepage extends Component {
       <div>
         <Tabs defaultActiveKey="unanswered" id="uncontrolled-tab-example">
           <Tab eventKey="unanswered" title="Unanswered Question">
-            <h3>Unanswered Questions</h3>
             <QuestionList customQuestions = {unansweredQuestionsSorted} />
           </Tab>
           <Tab eventKey="answered" title="Answered Question">
-            <h3>Answered Questions</h3>
             <QuestionList customQuestions = {answeredQuestionsSorted} />
           </Tab>
         </Tabs>

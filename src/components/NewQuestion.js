@@ -73,7 +73,7 @@ class NewQuestion extends Component {
             className='btn'
             type='submit'
             disabled={optionOne === ''}>
-            Submit
+            Save
           </Button>
         </form>
       </div>

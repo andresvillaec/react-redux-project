@@ -10,6 +10,17 @@
   max-width: 720px;
   margin: 0 auto;
 }
+.container-small{
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 15px;
+  margin: 1px solid;
+}
+.avatar{
+  width: 120px;
+  height: auto;
+  padding: 20px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
