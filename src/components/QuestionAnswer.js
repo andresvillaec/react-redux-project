@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {handleSaveAnswer} from '../actions/questions'
-import { Redirect, withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 function mapStateToProps({questions, users, authedUser}, props) {
   const { id } = props.match.params
@@ -9,7 +9,7 @@ function mapStateToProps({questions, users, authedUser}, props) {
   return {
     question: question,
     user: users[authedUser],
-    author: users[question.author]
+    author: users && question ? users[question.author] : {}
   };
 }
 
@@ -45,6 +45,11 @@ class QuestionAnswer extends Component {
 
   render() {
     const {question, user, author} = this.props
+    
+    if (!question) {
+      return <Redirect to={'/login'} />
+    }
+
     const {isAnswered} = this.state
     const {optionOne, optionTwo} = question
     const {name, avatarURL} = author

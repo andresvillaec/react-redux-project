@@ -22,15 +22,15 @@ class App extends Component {
         <LoadingBar/> 
         <Router>
         <Nav/>
-          <Switch>
-            <Route exact path="/" component={Homepage}/>
-            <Route exact path="/new" component={NewQuestion}/>
-            <Route exact path="/leader-board" component={LeaderBoard}/>
-            <Route exact path="/question/:id" component={QuestionAnswer}/>
-            <Route exact path="/answer/:id" component={QuestionResponse}/>
-            <Route exact path="/login" component={Login}/>
-            <Route path="*" component={PageNotFound}/>
-          </Switch>
+        <Switch>
+          <Route exact path="/" component={Homepage}/>
+          <Route exact path="/add" component={NewQuestion}/>
+          <Route exact path="/leaderboard" component={LeaderBoard}/>
+          <Route exact path="/questions/:id" component={QuestionAnswer}/>
+          <Route exact path="/answer/:id" component={QuestionResponse}/>
+          <Route exact path="/login" component={Login}/>
+          <Route path="*" component={PageNotFound}/>
+        </Switch>
         </Router>
       </div>
     )

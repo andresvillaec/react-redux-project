@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import LeaderBoardItem from './LeaderBoardItem'
 
 function mapStateToProps({users, authedUser}) {

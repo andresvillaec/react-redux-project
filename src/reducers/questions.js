@@ -1,4 +1,4 @@
-import { LOAD_QUESTIONS, CREATE_QUESTION } from '../actions/questions'
+import { LOAD_QUESTIONS, CREATE_QUESTION, SAVE_ANSWER} from '../actions/questions'
 
 export default function questions (state = {}, action) {
   switch(action.type) {
@@ -7,11 +7,16 @@ export default function questions (state = {}, action) {
         ...state,
         ...action.questions
       }
-      case CREATE_QUESTION :
-        const{question} = action
+    case CREATE_QUESTION :
+      const{question} = action
+      return {
+        ...state,
+        [question.id]: question,
+      }
+      case SAVE_ANSWER :
         return {
           ...state,
-          [question.id]: question,
+          ...action.questions
         }
     default :
       return state

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import QuestionList from './QuestionList'
-import { Redirect, withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class Homepage extends Component {
   componentDidMount() {
@@ -18,12 +18,12 @@ class Homepage extends Component {
     const answeredQuestions = Object.values(questions).filter(function(question) {
       return question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
     });
-    const answeredQuestionsSorted = answeredQuestions.sort( (a, b) => a.timestamp - b.timestamp);
+    const answeredQuestionsSorted = answeredQuestions.sort( (a, b) => b.timestamp - a.timestamp);
 
     const unansweredQuestions = Object.values(questions).filter(function(question) {
       return !question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser)
     });
-    const unansweredQuestionsSorted = unansweredQuestions.sort( (a, b) => a.timestamp - b.timestamp);
+    const unansweredQuestionsSorted = unansweredQuestions.sort( (a, b) => b.timestamp - a.timestamp);
 
     return (
       <div>

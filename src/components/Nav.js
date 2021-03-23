@@ -30,14 +30,14 @@ class Nav extends Component {
           </NavLink>
         </li>
         { isLoggedIn && <li>
-          <NavLink to='/new'>
+          <NavLink to='/add'>
             New Question
           </NavLink>
         </li>
         }
         <li>
-          <NavLink to='/leader-board'>
-            Leader Board
+          <NavLink to='/leaderboard'>
+            Leaderboard
           </NavLink>
         </li>
         {isLoggedIn ? 
