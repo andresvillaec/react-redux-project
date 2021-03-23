@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import {loginUser} from '../actions/authedUser'
+import Button from 'react-bootstrap/Button'
 
 function mapStateToProps({users, authedUser}) {
   const userArray = Object.values(users)
@@ -67,12 +68,12 @@ class Login extends Component {
 						  })}
             </select>
           </div>
-          <button
+          <Button
             className='btn'
             type='submit'
             disabled={selectedUserId === 0}>
-              Submit
-          </button>
+            Submit
+          </Button>
         </form>
       </div>
     );

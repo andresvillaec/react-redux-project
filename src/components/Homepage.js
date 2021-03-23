@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import QuestionList from './QuestionList'
 import { Redirect } from 'react-router-dom'
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
 
 class Homepage extends Component {
   componentDidMount() {
@@ -27,12 +29,16 @@ class Homepage extends Component {
 
     return (
       <div>
-        <div className='container'>
-          <h3>Unanswered Questions</h3>
-          <QuestionList customQuestions = {unansweredQuestionsSorted} />
-          <h3>Answered Questions</h3>
-          <QuestionList customQuestions = {answeredQuestionsSorted} />
-        </div>
+        <Tabs defaultActiveKey="unanswered" id="uncontrolled-tab-example">
+          <Tab eventKey="unanswered" title="Unanswered Question">
+            <h3>Unanswered Questions</h3>
+            <QuestionList customQuestions = {unansweredQuestionsSorted} />
+          </Tab>
+          <Tab eventKey="answered" title="Answered Question">
+            <h3>Answered Questions</h3>
+            <QuestionList customQuestions = {answeredQuestionsSorted} />
+          </Tab>
+        </Tabs>
       </div>
     )
   }

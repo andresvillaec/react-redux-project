@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {handleAddQuestion} from '../actions/questions'
 import { Redirect } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 class NewQuestion extends Component {
   state = {
@@ -68,12 +69,12 @@ class NewQuestion extends Component {
               value={optionTwo}
             />
           </div>
-          <button
+          <Button
             className='btn'
             type='submit'
             disabled={optionOne === ''}>
-              Submit
-          </button>
+            Submit
+          </Button>
         </form>
       </div>
     );

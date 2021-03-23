@@ -11,6 +11,8 @@ import QuestionResponse from './QuestionResponse'
 import Login from './Login'
 import Nav from './Nav'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import '../App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
   componentDidMount() {

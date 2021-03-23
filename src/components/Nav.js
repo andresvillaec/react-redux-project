@@ -23,41 +23,41 @@ class Nav extends Component {
 
     return (
       <nav className='nav'>
-      <ul>
-        <li>
-          <NavLink to='/' exact activeClassName='active'>
-            Home
-          </NavLink>
-        </li>
-        { isLoggedIn && <li>
-          <NavLink to='/add'>
-            New Question
-          </NavLink>
-        </li>
-        }
-        <li>
-          <NavLink to='/leaderboard'>
-            Leaderboard
-          </NavLink>
-        </li>
-        {isLoggedIn ? 
-        <li>
-          <span>Hello, {user.name} </span>
-          <NavLink
-           onClick={this.handleClick} 
-           to='/'
-           >
-            Logout
-          </NavLink>
-        </li> :
-        <li>
-          <NavLink to='/login'>
-            Login
-          </NavLink>
-        </li>
-        }
-      </ul>
-    </nav>
+        <ul>
+          <li>
+            <NavLink to='/' exact activeClassName='active'>
+              Home
+            </NavLink>
+          </li>
+          { isLoggedIn && <li>
+            <NavLink to='/add'>
+              New Question
+            </NavLink>
+          </li>
+          }
+          <li>
+            <NavLink to='/leaderboard'>
+              Leaderboard
+            </NavLink>
+          </li>
+          {isLoggedIn ? 
+          <li>
+            <span>Hello, {user.name} </span>
+            <NavLink
+            onClick={this.handleClick} 
+            to='/'
+            >
+              Logout
+            </NavLink>
+          </li> :
+          <li>
+            <NavLink to='/login'>
+              Login
+            </NavLink>
+          </li>
+          }
+        </ul>
+      </nav>
     );
   }
 }
