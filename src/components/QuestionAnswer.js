@@ -54,6 +54,11 @@ class QuestionAnswer extends Component {
       return <Redirect to={to} />
     }
 
+    const alreadyResponse = Object.keys(user.answers).includes(question.id)
+    if (alreadyResponse === true) {
+      return <Redirect to={to} />
+    }
+
     return (
       <div>
         <p>{name} asks:</p>

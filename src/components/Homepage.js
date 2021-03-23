@@ -15,22 +15,23 @@ class Homepage extends Component {
       return <Redirect to={'/login'} />
     }
 
-    const questionsArray = Object.values(questions)
-    const answeredQuestions = questionsArray.filter(function(question) {
+    const answeredQuestions = Object.values(questions).filter(function(question) {
       return question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
     });
+    const answeredQuestionsSorted = answeredQuestions.sort( (a, b) => a.timestamp - b.timestamp);
 
-    const unansweredQuestions = questionsArray.filter(function(question) {
+    const unansweredQuestions = Object.values(questions).filter(function(question) {
       return !question.optionOne.votes.includes(authedUser) && !question.optionTwo.votes.includes(authedUser)
     });
+    const unansweredQuestionsSorted = unansweredQuestions.sort( (a, b) => a.timestamp - b.timestamp);
 
     return (
       <div>
         <div className='container'>
           <h3>Unanswered Questions</h3>
-          <QuestionList customQuestions = {answeredQuestions} />
+          <QuestionList customQuestions = {unansweredQuestionsSorted} />
           <h3>Answered Questions</h3>
-          <QuestionList customQuestions = {unansweredQuestions} />
+          <QuestionList customQuestions = {answeredQuestionsSorted} />
         </div>
       </div>
     )

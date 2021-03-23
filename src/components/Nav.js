@@ -42,6 +42,7 @@ class Nav extends Component {
         </li>
         {isLoggedIn ? 
         <li>
+          <span>Hello, {user.name} </span>
           <NavLink
            onClick={this.handleClick} 
            to='/'
