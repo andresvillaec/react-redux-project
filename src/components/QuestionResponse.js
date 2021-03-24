@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 function mapStateToProps({users, questions, authedUser}, props) {
   const { id } = props.match.params
@@ -33,6 +34,8 @@ class QuestionResponse extends Component {
     const optionOneCounter = optionOne.votes.length
     const optionTwoCounter = optionTwo.votes.length
     const counter = optionOneCounter + optionTwoCounter;
+    const optionOnePercentage = Math.round((optionOneCounter / counter) * 100);
+    const optionTwoPercentage = Math.round((optionTwoCounter / counter) * 100);
 
     return (
       <div>
@@ -48,10 +51,12 @@ class QuestionResponse extends Component {
             <h5>Results</h5>
             <div className="box">
               <p>{optionOne.text}</p>
+              <ProgressBar now={optionOnePercentage} label={`${optionOnePercentage}%`} />
               <p>{optionOneCounter} out of {counter} votes</p>
             </div>
             <div className="box">
               <p>{optionTwo.text}</p>
+              <ProgressBar now={optionTwoPercentage} label={`${optionTwoPercentage}%`} />
               <p>{optionTwoCounter} out of {counter} votes</p>
             </div>
           </div>
