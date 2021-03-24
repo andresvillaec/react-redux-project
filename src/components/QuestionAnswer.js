@@ -6,11 +6,13 @@ import Button from 'react-bootstrap/Button'
 
 function mapStateToProps({questions, users, authedUser}, props) {
   const { id } = props.match.params
-  const question = questions[id]
+  const question = questions ? questions[id] : null
   return {
     question: question,
     user: users[authedUser],
-    author: users && question ? users[question.author] : {}
+    author: users && question ? users[question.author] : {},
+    authedUser,
+    id
   };
 }
 
@@ -44,24 +46,30 @@ class QuestionAnswer extends Component {
   }
 
   render() {
-    const {question, user, author} = this.props
+    const {question, user, author, authedUser, id} = this.props
+    const to = 'questions/' + id
+    const isLoggedIn = authedUser === null ? false : true
+    
+    if (isLoggedIn === false) {
+      return <Redirect to={'/login?redirect=' + to} />
+    }
     
     if (!question) {
-      return <Redirect to={'/login'} />
+      return <Redirect to={'/not-found'} />
     }
 
     const {isAnswered} = this.state
     const {optionOne, optionTwo} = question
     const {name, avatarURL} = author
-    const to = '/answer/' + question.id
+    const toAnswer = '/answer/'+ id
 
     if (isAnswered === true) {
-      return <Redirect to={to} />
+      return <Redirect to={toAnswer} />
     }
 
     const alreadyResponse = Object.keys(user.answers).includes(question.id)
     if (alreadyResponse === true) {
-      return <Redirect to={to} />
+      return <Redirect to={toAnswer} />
     }
 
     return (

@@ -10,7 +10,7 @@ class QuestionList extends Component {
       <ul>
         {customQuestions.map((question) => (
           <li key={question.id}>
-            <QuestionItem question={question}/>
+            <QuestionItem id={question.id}/>
           </li>
         ))}
       </ul>

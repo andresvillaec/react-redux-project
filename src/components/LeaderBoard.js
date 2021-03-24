@@ -19,7 +19,7 @@ class LeaderBoard extends Component {
     const {users, authedUser} = this.props
     const isLoggedIn = authedUser === null ? false : true
     if (isLoggedIn === false) {
-      return <Redirect to={'/login'} />
+      return <Redirect to={'/login?redirect=leaderboard'} />
     }
     
     return (

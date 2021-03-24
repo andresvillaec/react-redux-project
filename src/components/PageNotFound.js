@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 
-export default class PageNotFound extends Component {
+class PageNotFound extends Component {
   render() {
+    const {authedUser} = this.props
+    const isLoggedIn = authedUser === null ? false : true
+    if (isLoggedIn === false) {
+      return <Redirect to={'/login?redirect=not-found'} />
+    }
+
     return (
       <div>
         Not Found
@@ -9,3 +17,13 @@ export default class PageNotFound extends Component {
     )
   }
 }
+
+function mapStateToProps({authedUser}) {
+  return {
+    authedUser
+  };
+}
+
+export default connect(
+  mapStateToProps,
+)(PageNotFound);
