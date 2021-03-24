@@ -26,7 +26,7 @@ class QuestionResponse extends Component {
     }
 
     if (!question) {
-      return <Redirect to={'/login'} />
+      return <Redirect to={'/not-found'} />
     }
     const {optionOne, optionTwo} = question
     const {name, avatarURL} = author
