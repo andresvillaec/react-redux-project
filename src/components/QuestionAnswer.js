@@ -61,14 +61,15 @@ class QuestionAnswer extends Component {
     const {isAnswered} = this.state
     const {optionOne, optionTwo} = question
     const {name, avatarURL} = author
+    const toAnswer = '/answer/'+ id
 
     if (isAnswered === true) {
-      return <Redirect to={to} />
+      return <Redirect to={toAnswer} />
     }
 
     const alreadyResponse = Object.keys(user.answers).includes(question.id)
     if (alreadyResponse === true) {
-      return <Redirect to={to} />
+      return <Redirect to={toAnswer} />
     }
 
     return (

@@ -17,7 +17,7 @@ function mapStateToProps({users, questions, authedUser}, props) {
 
 class QuestionResponse extends Component {
   render() {
-    const {question, author, authedUser,id} = this.props
+    const {question, author, authedUser, id} = this.props
     const isLoggedIn = authedUser === null ? false : true
     const url = 'answer/' + id
     if (isLoggedIn === false) {

@@ -1,30 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom"
-import { Redirect } from 'react-router-dom'
 
-function mapStateToProps ({ users, questions, authedUser}, {id}) {
+function mapStateToProps ({ users, questions}, {id}) {
   const question = questions ? questions[id] : {}
+  console.log(question)
   return {
     author: users ? users[question.author] : {},
     question,
     id,
-    authedUser,
   }
 }
 
 class QuestionItem extends Component {
   render() {
-    const {question, author, id, authedUser} = this.props
+    const {question, author, id} = this.props
     const {optionOne} = question
     const {name, avatarURL} = author
     const to = '/questions/' + id
-
-    const isLoggedIn = authedUser === null ? false : true
-    
-    if (isLoggedIn === false) {
-      return <Redirect to={'/login?redirect=' + to} />
-    }
 
     return (
       <div>
