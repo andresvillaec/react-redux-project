@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import {loginUser} from '../actions/authedUser'
 import Button from 'react-bootstrap/Button'
+import QueryString from 'query-string'
 
 function mapStateToProps({users, authedUser}) {
   const userArray = Object.values(users)
@@ -15,18 +16,18 @@ function mapStateToProps({users, authedUser}) {
 class Login extends Component {
   state = {
 		selectedUserId: 0,
-		toHome: false,
+		isLoggedIn: false,
   }
   
   handleSubmit = (e) => {
     e.preventDefault()
     const { selectedUserId } = this.state;
-		const { dispatch } = this.props;
+    const { dispatch } = this.props;
 	
 		dispatch(loginUser(selectedUserId));
     
     this.setState(() => ({
-      toHome: true,  
+      isLoggedIn: true,  
     }))
   }
 
@@ -38,11 +39,14 @@ class Login extends Component {
   }
 
   render() {
-    const { selectedUserId, toHome } = this.state
+    const { selectedUserId, isLoggedIn } = this.state
     const {users} = this.props 
+    const {search} = this.props.location
+    const parsedQueryString = QueryString.parse(search);
+    const url = parsedQueryString && parsedQueryString['redirect'] ? '/' + parsedQueryString['redirect'] : '/'
 
-    if (toHome) {
-      return <Redirect to='/' />
+    if (isLoggedIn) {
+      return <Redirect to={url} />
     }
 
     return (

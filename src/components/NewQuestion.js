@@ -32,6 +32,7 @@ class NewQuestion extends Component {
 
     const { optionOne, optionTwo } = this.state
     const { dispatch, id } = this.props
+    
 
     dispatch(handleAddQuestion(optionOne, optionTwo))
 
@@ -43,7 +44,15 @@ class NewQuestion extends Component {
   }
 
   render() {
+    const {authedUser} = this.props
+    const isLoggedIn = authedUser === null ? false : true
+    if (isLoggedIn === false) {
+      return <Redirect to={'/login?redirect=add'} />
+    }
+
     const { optionOne, optionTwo, toHome } = this.state
+    
+    
     if (toHome === true) {
       return <Redirect to='/' />
     }
@@ -81,4 +90,10 @@ class NewQuestion extends Component {
   }
 }
 
-export default connect()(NewQuestion)
+function mapStateToProps({authedUser}) {
+  return {
+    authedUser
+  };
+}
+
+export default connect(mapStateToProps)(NewQuestion)

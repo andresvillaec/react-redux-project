@@ -2,20 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 
-function mapStateToProps({users, questions}, props) {
+function mapStateToProps({users, questions, authedUser}, props) {
   const { id } = props.match.params
   const question = questions ? questions[id] :{}
   const author = users && question ? users[question.author] : {}
 
   return {
     question,
-    author
+    author, 
+    authedUser,
+    id
   }
 }
 
 class QuestionResponse extends Component {
   render() {
-    const {question, author} = this.props
+    const {question, author, authedUser,id} = this.props
+    const isLoggedIn = authedUser === null ? false : true
+    const url = 'answer/' + id
+    if (isLoggedIn === false) {
+      return <Redirect to={'/login?redirect=' + url} />
+    }
+
     if (!question) {
       return <Redirect to={'/login'} />
     }
